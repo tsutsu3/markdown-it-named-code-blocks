@@ -1,0 +1,99 @@
+none
+.
+```
+console.log("Hello World!");
+```
+.
+<pre><code>console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+js
+.
+```js
+console.log("Hello World!");
+```
+.
+<pre><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+js:
+.
+```js:
+console.log("Hello World!");
+```
+.
+<pre><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+js:hello.js (named code blocks)
+.
+```js:hello.js
+console.log("Hello World!");
+```
+.
+<pre class="named-fence-block" style="position: relative; padding-top: 2em;"><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code><div class="named-fence-filename" style="position: absolute; top: 0; left: 0; padding: 0 4px; font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;">hello.js</div></pre>
+.
+
+:hello.js
+.
+```:hello.js
+console.log("Hello World!");
+```
+.
+<pre><code>console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+hello.js
+.
+```hello.js
+console.log("Hello World!");
+```
+.
+<pre><code class="language-hello.js">console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+js:hello.js:second.js
+.
+```js:hello.js:second.js
+console.log("Hello World!");
+```
+.
+<pre><code>console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+hello.js:second.js (named code blocks, but language is incorrect)
+.
+```hello.js:second.js
+console.log("Hello World!");
+```
+.
+<pre class="named-fence-block" style="position: relative; padding-top: 2em;"><code class="language-hello.js">console.log(&quot;Hello World!&quot;);
+</code><div class="named-fence-filename" style="position: absolute; top: 0; left: 0; padding: 0 4px; font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;">second.js</div></pre>
+.
+
+js langAttr
+.
+```js langAttr
+console.log("Hello World!");
+```
+.
+<pre><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code></pre>
+.
+
+js:hello.js langAttr
+.
+```js:hello.js langAttr
+console.log("Hello World!");
+```
+.
+<pre class="named-fence-block" style="position: relative; padding-top: 2em;"><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code><div class="named-fence-filename" style="position: absolute; top: 0; left: 0; padding: 0 4px; font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;">hello.js</div></pre>
+.
