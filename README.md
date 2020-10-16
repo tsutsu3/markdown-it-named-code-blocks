@@ -94,4 +94,4 @@ var parser = md().use(namedCodeBlocks, {isEnableInlineCss: true});
 
 ## 🎉 License
 
-Distributed under the `MIT` License. See [LICENSE]() for more information.
+Distributed under the `MIT` License. See [LICENSE](https://github.com/tsutsu3/markdown-it-named-code-blocks/blob/master/LICENSE) for more information.
