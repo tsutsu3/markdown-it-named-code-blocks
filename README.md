@@ -9,7 +9,7 @@ A [markdown-it](https://github.com/markdown-it/markdown-it#readme) plugin to cre
 
 ## 🧐 About
 
-With this pllugin you can create named code blocks like:
+With this plugin you can create named code blocks like:
 
 ~~~
 ```js:hello.js
@@ -26,7 +26,7 @@ Rendered as:
 
 After applying the css, it looks like this:
 
-![Renderd markdown](image/named_code_blocks.png)
+![Rendered markdown](image/named_code_blocks.png)
 
 ## 🏁 Getting Started
 
@@ -77,7 +77,7 @@ Apply CSS like this:
 
 Rendered:
 
-![Renderd markdown](image/named_code_blocks.png)
+![Rendered markdown](image/named_code_blocks.png)
 
 If you want to enable inline CSS:
 
