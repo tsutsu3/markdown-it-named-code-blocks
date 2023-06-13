@@ -45,14 +45,14 @@ npm install markdown-it-named-code-blocks
 Use this same as a normal markdown-it plugin:
 
 ```js
-var md = require('markdown-it');
-var namedCodeBlocks = require('markdown-it-named-code-blocks');
+const md = require('markdown-it');
+const namedCodeBlocks = require('markdown-it-named-code-blocks');
 
-var parser = md().use(namedCodeBlocks);
+const parser = md().use(namedCodeBlocks);
 
-var str = '```js:hello.js\nconsole.log("Hello World!);```'
+const str = '```js:hello.js\nconsole.log("Hello World!);```'
 
-var result = parser.render(str);
+const result = parser.render(str);
 ```
 
 Apply CSS like this:
@@ -82,7 +82,7 @@ Rendered:
 If you want to enable inline CSS:
 
 ```js
-var parser = md().use(namedCodeBlocks, {isEnableInlineCss: true});
+const parser = md().use(namedCodeBlocks, {isEnableInlineCss: true});
 ```
 
 ```html
