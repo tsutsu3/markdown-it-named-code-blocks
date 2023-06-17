@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-named-code-blocks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A markdown-it plugin to create named code blocks.",
   "main": "./src/index.js",
   "scripts": {
