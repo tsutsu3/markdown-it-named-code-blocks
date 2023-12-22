@@ -25,17 +25,17 @@
     "url": "https://github.com/tsutsu3/markdown-it-named-code-blocks/issues"
   },
   "homepage": "https://github.com/tsutsu3/markdown-it-named-code-blocks#readme",
-  "dependencies": {
-    "node-html-parser": "^6.1.5"
-  },
   "devDependencies": {
     "eslint": "^8.43.0",
-    "eslint-config-prettier": "^8.8.0",
-    "highlight.js": "^10.2.1",
+    "eslint-config-prettier": "^9.1.0",
+    "highlight.js": "^10.7.3",
     "jest": "^29.5.0",
-    "markdown-it": "^13.0.1",
+    "markdown-it": "^14.0.0",
     "markdown-it-testgen": "^0.1.6",
     "path": "^0.12.7",
-    "prettier": "^2.1.2"
+    "prettier": "^3.1.1"
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.11"
   }
 }
