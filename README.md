@@ -11,11 +11,11 @@ A [markdown-it](https://github.com/markdown-it/markdown-it#readme) plugin to cre
 
 With this plugin you can create named code blocks like:
 
-~~~
+````txt
 ```js:hello.js
 console.log("Hello World!")
 ```
-~~~
+````
 
 Rendered as:
 
@@ -89,8 +89,6 @@ const parser = md().use(namedCodeBlocks, {isEnableInlineCss: true});
 <pre class="hljs named-fence-block" style="position: relative; padding-top: 2em"><code>console.log(&quot;Hello World!&quot;)
 </code><div class="mincb-name" style="position: absolute; top: 0; left: 0; padding: 0 4px; font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;">hello.js</div></pre>
 ```
-
-
 
 ## 🎉 License
 

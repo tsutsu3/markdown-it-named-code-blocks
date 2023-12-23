@@ -1,11 +1,14 @@
 "use strict";
 
-const path = require("path");
-const generate = require("markdown-it-testgen");
-const hljs = require("highlight.js");
+import path from "path";
+
+const generate = require("markdown-it-testgen"); // eslint-disable-line @typescript-eslint/no-var-requires
+import hljs from "highlight.js";
+import MarkdownIt from "markdown-it";
+import namedCodeBlocks from "../src";
 
 describe("markdown-it-named-code-blocks", () => {
-  let md = require("markdown-it")().use(require("../src"));
+  const md = new MarkdownIt().use(namedCodeBlocks);
 
   generate(
     path.join(__dirname, "./fixture/codeblock.txt"),
@@ -15,14 +18,14 @@ describe("markdown-it-named-code-blocks", () => {
 });
 
 describe("markdown-it-named-code-blocks-default-highlight", () => {
-  let md = require("markdown-it")({
-    highlight: function (str, lang) {
+  const md = new MarkdownIt({
+    highlight: function (str: string, lang: string) {
       if (lang && hljs.getLanguage(lang)) {
-        return hljs.highlight(lang, str).value;
+        return hljs.highlight(str, { language: lang }).value;
       }
-      return ""; // use external default escaping
-    },
-  }).use(require("../src"));
+      return "";
+    }
+  }).use(namedCodeBlocks);
 
   generate(
     path.join(__dirname, "./fixture/codeblock_highlightjs.txt"),
@@ -32,12 +35,12 @@ describe("markdown-it-named-code-blocks-default-highlight", () => {
 });
 
 describe("markdown-it-named-code-blocks-override-highlight", () => {
-  let md = require("markdown-it")({
-    highlight: function (str, lang) {
+  const md: MarkdownIt = new MarkdownIt({
+    highlight: function (str: string, lang: string) {
       if (lang && hljs.getLanguage(lang)) {
         return (
           '<pre class="hljs"><code>' +
-          hljs.highlight(lang, str, true).value +
+          hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
           "</code></pre>"
         );
       }
@@ -45,8 +48,8 @@ describe("markdown-it-named-code-blocks-override-highlight", () => {
       return (
         '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>"
       );
-    },
-  }).use(require("../src"));
+    }
+  }).use(namedCodeBlocks);
 
   generate(
     path.join(__dirname, "./fixture/codeblock_highlightjs_full_override.txt"),
@@ -56,8 +59,8 @@ describe("markdown-it-named-code-blocks-override-highlight", () => {
 });
 
 describe("markdown-it-named-code-blocks-inline-css", () => {
-  let md = require("markdown-it")().use(require("../src"), {
-    isEnableInlineCss: true,
+  const md = new MarkdownIt().use(namedCodeBlocks, {
+    isEnableInlineCss: true
   });
 
   generate(
