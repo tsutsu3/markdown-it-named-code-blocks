@@ -1,0 +1,15 @@
+.git
+.github
+.vscode
+demo
+image
+node_modules
+test
+tsconfig.json
+jest.config.ts
+package-lock.json
+CHAGNELOG.md
+.eslintignore
+.eslintrc.json
+.prettierignore
+.prettierrc.json
