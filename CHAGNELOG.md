@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.3 (2023/12/24)
+
+- Add npmignore
+
 ## 1.0.2 (2023/12/23)
 
 - Migrated implementation to typescript (#31)
