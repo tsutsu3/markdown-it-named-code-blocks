@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.0.0 (2023/12/23)
+## 1.0.1 (2023/12/23)
 
 - Migrated implementation to typescript (#31)
 
