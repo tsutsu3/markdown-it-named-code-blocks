@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.4 (2023/12/24)
+
+- Fix missing dist in npm package
+
 ## 1.0.3 (2023/12/24)
 
 - Add npmignore
