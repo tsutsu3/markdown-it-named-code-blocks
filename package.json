@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "tsc && npm run minify",
     "minify": "terser dist/index.js -o dist/index.min.js --compress --mangle",
     "clean": "npm run clean:os",
