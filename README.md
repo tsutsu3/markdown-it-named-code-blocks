@@ -5,6 +5,7 @@ A [markdown-it](https://github.com/markdown-it/markdown-it#readme) plugin to cre
 [![CI](https://github.com/tsutsu3/markdown-it-named-code-blocks/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tsutsu3/markdown-it-named-code-blocks/actions/workflows/ci.yml)
 [![NPM version](https://img.shields.io/npm/v/markdown-it-named-code-blocks.svg?style=flat)](https://www.npmjs.org/package/markdown-it-named-code-blocks)
 [![Code Climate](https://codeclimate.com/github/tsutsu3/markdown-it-named-code-blocks/badges/gpa.svg)](https://codeclimate.com/github/tsutsu3/markdown-it-named-code-blocks)
+[![codecov](https://codecov.io/gh/tsutsu3/markdown-it-named-code-blocks/graph/badge.svg?token=RCS2WCEGWP)](https://codecov.io/gh/tsutsu3/markdown-it-named-code-blocks)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tsutsu3/markdown-it-named-code-blocks/LICENSE)
 
 ## 🧐 About
