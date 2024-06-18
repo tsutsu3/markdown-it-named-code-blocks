@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.5 (2023/06/18)
+
+- Update 3rd libs version
+
 ## 1.0.4 (2023/12/24)
 
 - Fix missing dist in npm package
