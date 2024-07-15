@@ -34,7 +34,7 @@
   "homepage": "https://github.com/tsutsu3/markdown-it-named-code-blocks#readme",
   "devDependencies": {
     "@types/jest": "^29.5.11",
-    "@types/markdown-it": "^13.0.7",
+    "@types/markdown-it": "^14.1.1",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^6.15.0",
     "eslint": "^8.43.0",
