@@ -7,11 +7,18 @@ import hljs from "highlight.js";
 import MarkdownIt from "markdown-it";
 import namedCodeBlocks from "../src";
 
+const hljsVersion = require("highlight.js/package.json").version;
+const fixturePath = hljsVersion.startsWith("10")
+  ? "fixture/hljs10"
+  : "fixture/hljs11";
+
+console.log(`Running tests with highlight.js version: ${hljsVersion}`);
+
 describe("markdown-it-named-code-blocks", () => {
   const md = new MarkdownIt().use(namedCodeBlocks);
 
   generate(
-    path.join(__dirname, "./fixture/codeblock.txt"),
+    path.join(__dirname, `./${fixturePath}/codeblock.txt`),
     { header: true },
     md
   );
@@ -28,7 +35,7 @@ describe("markdown-it-named-code-blocks-default-highlight", () => {
   }).use(namedCodeBlocks);
 
   generate(
-    path.join(__dirname, "./fixture/codeblock_highlightjs.txt"),
+    path.join(__dirname, `./${fixturePath}/codeblock_highlightjs.txt`),
     { header: true },
     md
   );
@@ -52,7 +59,10 @@ describe("markdown-it-named-code-blocks-override-highlight", () => {
   }).use(namedCodeBlocks);
 
   generate(
-    path.join(__dirname, "./fixture/codeblock_highlightjs_full_override.txt"),
+    path.join(
+      __dirname,
+      `./${fixturePath}/codeblock_highlightjs_full_override.txt`
+    ),
     { header: true },
     md
   );
@@ -64,7 +74,7 @@ describe("markdown-it-named-code-blocks-inline-css", () => {
   });
 
   generate(
-    path.join(__dirname, "./fixture/codeblock_inline_css.txt"),
+    path.join(__dirname, `./${fixturePath}/codeblock_inline_css.txt`),
     { header: true },
     md
   );

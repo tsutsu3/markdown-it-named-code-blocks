@@ -14,7 +14,7 @@ js
 console.log("Hello World!");
 ```
 .
-<pre><code class="language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<pre><code class="language-js">console.log(&quot;Hello World!&quot;);
 </code></pre>
 .
 
@@ -24,7 +24,7 @@ js:
 console.log("Hello World!");
 ```
 .
-<pre><code class="language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<pre><code class="language-js">console.log(&quot;Hello World!&quot;);
 </code></pre>
 .
 
@@ -34,7 +34,7 @@ js:hello.js (named code blocks)
 console.log("Hello World!");
 ```
 .
-<pre class="named-fence-block"><code class="language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<pre class="named-fence-block"><code class="language-js">console.log(&quot;Hello World!&quot;);
 </code><div class="named-fence-filename">hello.js</div></pre>
 .
 
@@ -84,7 +84,7 @@ js langAttr
 console.log("Hello World!");
 ```
 .
-<pre><code class="language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<pre><code class="language-js">console.log(&quot;Hello World!&quot;);
 </code></pre>
 .
 
@@ -94,6 +94,6 @@ js:hello.js langAttr
 console.log("Hello World!");
 ```
 .
-<pre class="named-fence-block"><code class="language-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<pre class="named-fence-block"><code class="language-js">console.log(&quot;Hello World!&quot;);
 </code><div class="named-fence-filename">hello.js</div></pre>
 .
