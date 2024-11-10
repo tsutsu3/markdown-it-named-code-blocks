@@ -46,14 +46,38 @@ npm install markdown-it-named-code-blocks
 Use this same as a normal markdown-it plugin:
 
 ```js
-const md = require('markdown-it');
-const namedCodeBlocks = require('markdown-it-named-code-blocks');
+const md = require("markdown-it");
+const hljs = require("highlight.js");
+const namedCodeBlocks = require(".");
 
-const parser = md().use(namedCodeBlocks);
+const parser = md({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      return (
+        '<pre class="hljs"><code>' +
+        hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+        "</code></pre>"
+      );
+    }
 
-const str = '```js:hello.js\nconsole.log("Hello World!);```'
+    return (
+      '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>"
+    );
+  }
+}).use(namedCodeBlocks);
+
+const str = '```js:hello.js\nconsole.log("Hello World!");\n```';
 
 const result = parser.render(str);
+
+console.log(result);
+```
+
+Output:
+
+```html
+<pre class="hljs named-fence-block"><code><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+</code><div class="named-fence-filename">hello.js</div></pre>
 ```
 
 Apply CSS like this:
@@ -86,9 +110,11 @@ If you want to enable inline CSS:
 const parser = md().use(namedCodeBlocks, {isEnableInlineCss: true});
 ```
 
+Output:
+
 ```html
-<pre class="hljs named-fence-block" style="position: relative; padding-top: 2em"><code>console.log(&quot;Hello World!&quot;)
-</code><div class="mincb-name" style="position: absolute; top: 0; left: 0; padding: 0 4px; font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;">hello.js</div></pre>
+<pre class="hljs named-fence-block" style="position: relative; padding-top: 2em;"><code><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+</code><div class="named-fence-filename" style="position: absolute; top: 0; left: 0; padding: 0 4px; font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;">hello.js</div></pre>
 ```
 
 ## 🎉 License
