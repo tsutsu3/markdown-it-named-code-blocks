@@ -2,7 +2,7 @@
 
 import { parse, HTMLElement } from "node-html-parser";
 import { Token, Options, PluginWithOptions } from "markdown-it";
-import Renderer from "markdown-it/lib/renderer";
+import Renderer from "markdown-it/lib/renderer.mjs";
 
 type ParsedFenceInfo = {
   langName: string;
