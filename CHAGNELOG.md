@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.6 (2024/11/10)
+
+- Update dev packages version
+
 ## 1.0.5 (2023/06/18)
 
 - Update 3rd libs version
