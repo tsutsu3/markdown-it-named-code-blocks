@@ -25,7 +25,7 @@ jobs:
       - run: npm run test:all
       - name: Upload coverage reports to Codecov
         if: matrix.node-version == '20.x' && github.repository == 'tsutsu3/markdown-it-named-code-blocks'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
