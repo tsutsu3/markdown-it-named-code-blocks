@@ -56,6 +56,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "node-html-parser": "^6.1.11"
+    "node-html-parser": "^7.0.1"
   }
 }
