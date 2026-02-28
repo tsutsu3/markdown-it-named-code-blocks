@@ -8,9 +8,7 @@ import MarkdownIt from "markdown-it";
 import namedCodeBlocks from "../src";
 
 const hljsVersion = require("highlight.js/package.json").version;
-const fixturePath = hljsVersion.startsWith("10")
-  ? "fixture/hljs10"
-  : "fixture/hljs11";
+const fixturePath = "fixture/hljs11";
 
 console.log(`Running tests with highlight.js version: ${hljsVersion}`);
 
