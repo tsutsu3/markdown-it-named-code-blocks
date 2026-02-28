@@ -6,10 +6,10 @@
   "types": "dist/index.d.ts",
   "packageManager": "pnpm@10.15.0",
   "scripts": {
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint .",
     "format": "prettier --write \"**/*.ts\"",
-    "install-hljs10": "pnpm add highlight.js@^10.7.3 --no-save",
-    "install-hljs11": "pnpm add highlight.js@^11.0.0 --no-save",
+    "install-hljs10": "npm install highlight.js@^10.7.3 --no-save",
+    "install-hljs11": "npm install highlight.js@^11.0.0 --no-save",
     "test-hljs10": "pnpm run install-hljs10 && jest --coverage",
     "test-hljs11": "pnpm run install-hljs11 && jest --coverage",
     "test:all": "pnpm run test-hljs10 && pnpm run test-hljs11",
