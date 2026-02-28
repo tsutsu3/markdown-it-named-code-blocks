@@ -2,7 +2,7 @@
 
 A [markdown-it](https://github.com/markdown-it/markdown-it#readme) plugin to create named code blocks.
 
-[![CI](https://github.com/tsutsu3/markdown-it-named-code-blocks/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tsutsu3/markdown-it-named-code-blocks/actions/workflows/ci.yml)
+[![CI](https://github.com/tsutsu3/markdown-it-named-code-blocks/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tsutsu3/markdown-it-named-code-blocks/actions/workflows/ci.yml)
 [![NPM version](https://img.shields.io/npm/v/markdown-it-named-code-blocks.svg?style=flat)](https://www.npmjs.org/package/markdown-it-named-code-blocks)
 [![Code Climate](https://codeclimate.com/github/tsutsu3/markdown-it-named-code-blocks/badges/gpa.svg)](https://codeclimate.com/github/tsutsu3/markdown-it-named-code-blocks)
 [![codecov](https://codecov.io/gh/tsutsu3/markdown-it-named-code-blocks/graph/badge.svg?token=RCS2WCEGWP)](https://codecov.io/gh/tsutsu3/markdown-it-named-code-blocks)
@@ -119,4 +119,4 @@ Output:
 
 ## 🎉 License
 
-Distributed under the `MIT` License. See [LICENSE](https://github.com/tsutsu3/markdown-it-named-code-blocks/blob/master/LICENSE) for more information.
+Distributed under the `MIT` License. See [LICENSE](https://github.com/tsutsu3/markdown-it-named-code-blocks/blob/main/LICENSE) for more information.
