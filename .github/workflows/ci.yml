@@ -1,12 +1,13 @@
-name: Node.js CI
+name: Test
 
 on:
   push:
     branches: [main]
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+*"
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -31,22 +32,3 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
-
-  publish:
-    needs: [test]
-    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v4
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://registry.npmjs.org"
-          cache: "pnpm"
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
-      - run: pnpm publish --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
