@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.1.0 (2026/02/28)
+
+- Migrate from npm to pnpm
+- Drop highlight.js v10 support
+- Rename default branch from master to main
+- Update Node.js versions in CI: drop Node.js 18 (EOL), add Node.js 24
+- Migrate ESLint configuration to flat config format
+- Split CI workflow: separate publish workflow
+
 ## 1.0.6 (2024/11/10)
 
 - Update dev packages version
