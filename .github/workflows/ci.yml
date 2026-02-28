@@ -16,13 +16,15 @@ jobs:
         node-version: [20.x, 22.x, 24.x]
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test:all
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build --if-present
+      - run: pnpm run test:all
       - name: Upload coverage reports to Codecov
         if: matrix.node-version == '24.x' && github.repository == 'tsutsu3/markdown-it-named-code-blocks'
         uses: codecov/codecov-action@v5
@@ -36,13 +38,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v6
         with:
           node-version: "24.x"
           registry-url: "https://registry.npmjs.org"
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
