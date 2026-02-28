@@ -24,7 +24,7 @@ jobs:
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build --if-present
-      - run: pnpm run test:all
+      - run: pnpm test
       - name: Upload coverage reports to Codecov
         if: matrix.node-version == '24.x' && github.repository == 'tsutsu3/markdown-it-named-code-blocks'
         uses: codecov/codecov-action@v5
