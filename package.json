@@ -4,19 +4,20 @@
   "description": "A markdown-it plugin to create named code blocks.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
-    "install-hljs10": "npm install highlight.js@^10.7.3 --no-save",
-    "install-hljs11": "npm install highlight.js@^11.0.0 --no-save",
-    "test-hljs10": "npm run install-hljs10 && jest --coverage",
-    "test-hljs11": "npm run install-hljs11 && jest --coverage",
-    "test:all": "npm run test-hljs10 && npm run test-hljs11",
+    "install-hljs10": "pnpm add highlight.js@^10.7.3 --no-save",
+    "install-hljs11": "pnpm add highlight.js@^11.0.0 --no-save",
+    "test-hljs10": "pnpm run install-hljs10 && jest --coverage",
+    "test-hljs11": "pnpm run install-hljs11 && jest --coverage",
+    "test:all": "pnpm run test-hljs10 && pnpm run test-hljs11",
     "test": "jest --coverage",
-    "build": "tsc && npm run minify",
+    "build": "tsc && pnpm run minify",
     "minify": "terser dist/index.js -o dist/index.min.js --compress --mangle",
-    "clean": "npm run clean:os",
-    "clean:os": "npm run clean:windows || npm run clean:linux",
+    "clean": "pnpm run clean:os",
+    "clean:os": "pnpm run clean:windows || pnpm run clean:linux",
     "clean:windows": "rimraf dist",
     "clean:linux": "rm -rf dist || true"
   },
@@ -40,22 +41,22 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/markdown-it": "^14.1.2",
-    "@typescript-eslint/eslint-plugin": "^8.13.0",
-    "@typescript-eslint/parser": "^8.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
     "eslint": "^10.0.2",
-    "eslint-config-prettier": "^10.0.1",
-    "highlight.js": "^11.10.0",
-    "jest": "^30.0.0",
-    "markdown-it": "^14.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "highlight.js": "^11.11.1",
+    "jest": "^30.2.0",
+    "markdown-it": "^14.1.1",
     "markdown-it-testgen": "^0.1.6",
     "path": "^0.12.7",
-    "prettier": "^3.1.1",
-    "terser": "^5.26.0",
-    "ts-jest": "^29.1.1",
+    "prettier": "^3.8.1",
+    "terser": "^5.46.0",
+    "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "node-html-parser": "^7.0.1"
+    "node-html-parser": "^7.0.2"
   }
 }
