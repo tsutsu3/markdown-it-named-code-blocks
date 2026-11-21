@@ -17,7 +17,7 @@ jobs:
         node-version: [20.x, 22.x, 24.x]
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
@@ -28,7 +28,7 @@ jobs:
       - run: pnpm test
       - name: Upload coverage reports to Codecov
         if: matrix.node-version == '24.x' && github.repository == 'tsutsu3/markdown-it-named-code-blocks'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
