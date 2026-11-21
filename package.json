@@ -43,7 +43,7 @@
     "eslint-config-prettier": "^10.1.8",
     "highlight.js": "^11.11.1",
     "jest": "^30.2.0",
-    "markdown-it": "^14.1.1",
+    "markdown-it": "^15.0.3",
     "markdown-it-testgen": "^0.1.6",
     "prettier": "^3.8.1",
     "terser": "^5.46.0",
