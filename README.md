@@ -64,21 +64,21 @@ const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 const namedCodeBlocks = require("markdown-it-named-code-blocks");
 
-const parser = markdownIt({
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      return (
-        '<pre class="hljs"><code>' +
-        hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-        "</code></pre>"
-      );
-    }
+const { escapeHtml } = markdownIt().utils;
 
+function highlight(str, lang) {
+  if (lang && hljs.getLanguage(lang)) {
     return (
-      '<pre class="hljs"><code>' + parser.utils.escapeHtml(str) + "</code></pre>"
+      '<pre class="hljs"><code>' +
+      hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+      "</code></pre>"
     );
   }
-}).use(namedCodeBlocks);
+
+  return '<pre class="hljs"><code>' + escapeHtml(str) + "</code></pre>";
+}
+
+const parser = markdownIt({ highlight }).use(namedCodeBlocks);
 
 const str = '```js:hello.js\nconsole.log("Hello World!");\n```';
 
@@ -118,7 +118,7 @@ Rendered:
 
 ![Rendered markdown](image/named_code_blocks.png)
 
-If you want to enable inline CSS, pass `isEnableInlineCss: true` (with the same `highlight` option as above):
+If you want to enable inline CSS, pass `isEnableInlineCss: true` (using the same `highlight` function as above):
 
 ```js
 const parser = markdownIt({ highlight }).use(namedCodeBlocks, {
