@@ -47,7 +47,7 @@ Write the file name after the language, separated by `:`:
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- [markdown-it](https://github.com/markdown-it/markdown-it) v15 or later (use v1.x of this plugin for markdown-it v14 or earlier)
+- [markdown-it](https://github.com/markdown-it/markdown-it) v15 (use v1.1.0 or earlier of this plugin for markdown-it v14 or earlier)
 
 ### Installing
 
