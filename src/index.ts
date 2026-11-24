@@ -1,8 +1,12 @@
 "use strict";
 
 import { parse, HTMLElement } from "node-html-parser";
-import { Token, Options, PluginWithOptions } from "markdown-it";
-import Renderer from "markdown-it/lib/renderer.mjs";
+import type {
+  MarkdownIt,
+  MarkdownItOptions,
+  Renderer,
+  Token
+} from "markdown-it";
 
 type ParsedFenceInfo = {
   langName: string;
@@ -17,6 +21,8 @@ type CssOptions = {
 type Env = {
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
+
+type PluginWithOptions<T> = (md: MarkdownIt, options?: T) => void;
 
 const fencBlockName = "named-fence-block";
 const fenceFileName = "named-fence-filename";
@@ -38,8 +44,8 @@ const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
   md.renderer.rules.fence = (
     tokens: Token[],
     idx: number,
-    options: Options,
-    env: Env,
+    options: Required<MarkdownItOptions>,
+    env: Env | undefined,
     self: Renderer
   ) => {
     const token = tokens[idx];
