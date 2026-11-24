@@ -29,11 +29,25 @@ After applying the css, it looks like this:
 
 ![Rendered markdown](image/named_code_blocks.png)
 
+### Syntax
+
+Write the file name after the language, separated by `:`:
+
+````txt
+```<lang>:<file name> [attributes]
+```
+````
+
+- A language is required. `` ```:hello.js `` is rendered as a normal code block.
+- The file name cannot contain spaces or `:`.
+- The file name is HTML-escaped, so it is always shown as plain text.
+
 ## 🏁 Getting Started
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
+- [markdown-it](https://github.com/markdown-it/markdown-it) v15 or later (use v1.x of this plugin for markdown-it v14 or earlier)
 
 ### Installing
 
@@ -46,25 +60,25 @@ npm install markdown-it-named-code-blocks
 Use this same as a normal markdown-it plugin:
 
 ```js
-const md = require("markdown-it");
+const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
-const namedCodeBlocks = require(".");
+const namedCodeBlocks = require("markdown-it-named-code-blocks");
 
-const parser = md({
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      return (
-        '<pre class="hljs"><code>' +
-        hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-        "</code></pre>"
-      );
-    }
+const { escapeHtml } = markdownIt().utils;
 
+function highlight(str, lang) {
+  if (lang && hljs.getLanguage(lang)) {
     return (
-      '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>"
+      '<pre class="hljs"><code>' +
+      hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+      "</code></pre>"
     );
   }
-}).use(namedCodeBlocks);
+
+  return '<pre class="hljs"><code>' + escapeHtml(str) + "</code></pre>";
+}
+
+const parser = markdownIt({ highlight }).use(namedCodeBlocks);
 
 const str = '```js:hello.js\nconsole.log("Hello World!");\n```';
 
@@ -104,10 +118,12 @@ Rendered:
 
 ![Rendered markdown](image/named_code_blocks.png)
 
-If you want to enable inline CSS:
+If you want to enable inline CSS, pass `isEnableInlineCss: true` (using the same `highlight` function as above):
 
 ```js
-const parser = md().use(namedCodeBlocks, {isEnableInlineCss: true});
+const parser = markdownIt({ highlight }).use(namedCodeBlocks, {
+  isEnableInlineCss: true
+});
 ```
 
 Output:

@@ -97,3 +97,22 @@ console.log("Hello World!");
 <pre class="named-fence-block"><code class="language-js">console.log(&quot;Hello World!&quot;);
 </code><div class="named-fence-filename">hello.js</div></pre>
 .
+js:<img/src=x/onerror=alert(1)> (escape file name)
+.
+```js:<img/src=x/onerror=alert(1)>
+console.log("Hello World!");
+```
+.
+<pre class="named-fence-block"><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code><div class="named-fence-filename">&lt;img/src=x/onerror=alert(1)&gt;</div></pre>
+.
+
+js:"a&b".js (escape file name)
+.
+```js:"a&b".js
+console.log("Hello World!");
+```
+.
+<pre class="named-fence-block"><code class="language-js">console.log(&quot;Hello World!&quot;);
+</code><div class="named-fence-filename">&quot;a&amp;b&quot;.js</div></pre>
+.
