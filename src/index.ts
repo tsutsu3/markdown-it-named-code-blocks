@@ -11,14 +11,12 @@ type CssOptions = {
   isEnableInlineCss: boolean;
 };
 
-const fencBlockName = "named-fence-block";
+const fenceBlockName = "named-fence-block";
 const fenceFileName = "named-fence-filename";
-const defaultStyleOptions = {
-  mincbBlock: "position: relative; padding-top: 2em;",
-  mincbName:
-    "position: absolute; top: 0; left: 0; padding: 0 4px; " +
-    "font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;"
-};
+const fenceBlockStyle = "position: relative; padding-top: 2em;";
+const fenceFileNameStyle =
+  "position: absolute; top: 0; left: 0; padding: 0 4px; " +
+  "font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;";
 
 const namedCodeBlocks = (md: MarkdownIt, options?: CssOptions): void => {
   const isEnableInlineCss = options?.isEnableInlineCss ?? false;
@@ -55,11 +53,7 @@ const namedCodeBlocks = (md: MarkdownIt, options?: CssOptions): void => {
 
     if (pre instanceof HTMLElement) {
       addNamedFenceBlockAttr(pre, isEnableInlineCss);
-      addNamedFenceFilenameAtrr(
-        pre,
-        parsedFenceInfo.fileName,
-        isEnableInlineCss
-      );
+      addNamedFenceFileName(pre, parsedFenceInfo.fileName, isEnableInlineCss);
     }
 
     return rootElement.toString();
@@ -73,23 +67,21 @@ function addNamedFenceBlockAttr(
   const existClass = pre.getAttribute("class");
   pre.setAttribute(
     "class",
-    existClass ? `${existClass} ${fencBlockName}` : fencBlockName
+    existClass ? `${existClass} ${fenceBlockName}` : fenceBlockName
   );
 
   if (isEnableInlineCss) {
-    pre.setAttribute("style", defaultStyleOptions.mincbBlock);
+    pre.setAttribute("style", fenceBlockStyle);
   }
 }
 
-function addNamedFenceFilenameAtrr(
+function addNamedFenceFileName(
   pre: HTMLElement,
   fileName: string,
   isEnableInlineCss: boolean
 ): void {
   // fileName must already be HTML-escaped by the caller.
-  const style = isEnableInlineCss
-    ? ` style="${defaultStyleOptions.mincbName}"`
-    : "";
+  const style = isEnableInlineCss ? ` style="${fenceFileNameStyle}"` : "";
   pre.appendChild(
     parse(`<div class="${fenceFileName}"${style}>${fileName}</div>`)
   );
