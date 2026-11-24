@@ -55,6 +55,7 @@ const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
 
     if (info) {
       parsedFenceInfo = parseInfo(info);
+      parsedFenceInfo.fileName = md.utils.escapeHtml(parsedFenceInfo.fileName);
       updateTokenInfo(token, parsedFenceInfo);
     } else {
       parsedFenceInfo = { langName: "", fileName: "", langAttrs: "" };
@@ -112,6 +113,7 @@ function addNamedFenceFilenameAtrr(
   fileName: string,
   isEnableInlineCss: boolean
 ): void {
+  // fileName must already be HTML-escaped by the caller.
   const node = parse(`<div class="${fenceFileName}">${fileName}</div>`);
 
   const firstChild = node.firstChild;
