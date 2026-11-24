@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.0 (2026/11/24)
+
+- **Breaking:** Require markdown-it v15 (add `markdown-it ^15.0.0` as a peer dependency; type definitions now use markdown-it's bundled types, so `@types/markdown-it` is no longer needed)
+- Escape file names so they are always rendered as plain text
+- Restore `token.info` even if the default renderer or `highlight` throws
+- Skip HTML parsing for code blocks without a file name (faster rendering; their output is now exactly markdown-it's)
+- Update node-html-parser from v7 to v9
+- Migrate to pnpm 12
+- Add Node.js 26 to CI
+- Update dev packages version
+- Update README: fix usage example, document syntax and markdown-it requirement
+- Exclude development files from the npm package
+
 ## 1.1.0 (2026/02/28)
 
 - Migrate from npm to pnpm
