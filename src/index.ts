@@ -68,6 +68,11 @@ const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
       token.info = orgInfo;
     }
 
+    // Only named blocks need DOM changes; return others as rendered.
+    if (!parsedFenceInfo.fileName || !parsedFenceInfo.langName) {
+      return rendered;
+    }
+
     const rootElement = parse(rendered);
 
     updateElement(rootElement, parsedFenceInfo, isEnableInlineCss);
@@ -81,15 +86,13 @@ function updateElement(
   parsedFenceInfo: ParsedFenceInfo,
   isEnableInlineCss: boolean
 ): void {
-  if (parsedFenceInfo.fileName && parsedFenceInfo.langName) {
-    addNamedFenceBlockAttr(element, isEnableInlineCss);
+  addNamedFenceBlockAttr(element, isEnableInlineCss);
 
-    addNamedFenceFilenameAtrr(
-      element,
-      parsedFenceInfo.fileName,
-      isEnableInlineCss
-    );
-  }
+  addNamedFenceFilenameAtrr(
+    element,
+    parsedFenceInfo.fileName,
+    isEnableInlineCss
+  );
 }
 
 function addNamedFenceBlockAttr(
