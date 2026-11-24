@@ -1,10 +1,5 @@
 import { parse, HTMLElement } from "node-html-parser";
-import type {
-  MarkdownIt,
-  MarkdownItOptions,
-  Renderer,
-  Token
-} from "markdown-it";
+import type { MarkdownIt, Token } from "markdown-it";
 
 type ParsedFenceInfo = {
   langName: string;
@@ -16,12 +11,6 @@ type CssOptions = {
   isEnableInlineCss: boolean;
 };
 
-type Env = {
-  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-};
-
-type PluginWithOptions<T> = (md: MarkdownIt, options?: T) => void;
-
 const fencBlockName = "named-fence-block";
 const fenceFileName = "named-fence-filename";
 const defaultStyleOptions = {
@@ -31,7 +20,7 @@ const defaultStyleOptions = {
     "font-weight: bold; color: #000000; background: #c0c0c0; opacity: .6;"
 };
 
-const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
+const namedCodeBlocks = (md: MarkdownIt, options?: CssOptions): void => {
   const isEnableInlineCss = options?.isEnableInlineCss ?? false;
 
   const defaultRender = md.renderer.rules.fence;
@@ -39,13 +28,7 @@ const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
     throw new Error("defaultRender is undefined");
   }
 
-  md.renderer.rules.fence = (
-    tokens: Token[],
-    idx: number,
-    options: Required<MarkdownItOptions>,
-    env: Env | undefined,
-    self: Renderer
-  ) => {
+  md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx];
     const orgInfo = token.info;
     const info = token.info.trim();
