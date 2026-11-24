@@ -1,5 +1,3 @@
-"use strict";
-
 import { parse, HTMLElement } from "node-html-parser";
 import type {
   MarkdownIt,
@@ -36,7 +34,7 @@ const defaultStyleOptions = {
 const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
   const isEnableInlineCss = options?.isEnableInlineCss ?? false;
 
-  const defaultRender = md.renderer.rules?.fence;
+  const defaultRender = md.renderer.rules.fence;
   if (!defaultRender) {
     throw new Error("defaultRender is undefined");
   }
@@ -50,7 +48,7 @@ const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
   ) => {
     const token = tokens[idx];
     const orgInfo = token.info;
-    const info = token.info ? String(token.info).trim() : "";
+    const info = token.info.trim();
     let parsedFenceInfo: ParsedFenceInfo;
 
     if (info) {
@@ -160,5 +158,4 @@ function updateTokenInfo(token: Token, parsedFenceInfo: ParsedFenceInfo): void {
   }
 }
 
-// export default namedCodeBlocks;
 export = namedCodeBlocks;
