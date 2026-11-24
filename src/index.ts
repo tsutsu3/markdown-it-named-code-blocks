@@ -1,5 +1,5 @@
 import { parse, HTMLElement } from "node-html-parser";
-import type { MarkdownIt, Token } from "markdown-it";
+import type { MarkdownIt } from "markdown-it";
 
 type ParsedFenceInfo = {
   langName: string;
@@ -31,16 +31,12 @@ const namedCodeBlocks = (md: MarkdownIt, options?: CssOptions): void => {
   md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx];
     const orgInfo = token.info;
-    const info = token.info.trim();
-    let parsedFenceInfo: ParsedFenceInfo;
+    const parsedFenceInfo = parseInfo(token.info.trim());
+    parsedFenceInfo.fileName = md.utils.escapeHtml(parsedFenceInfo.fileName);
 
-    if (info) {
-      parsedFenceInfo = parseInfo(info);
-      parsedFenceInfo.fileName = md.utils.escapeHtml(parsedFenceInfo.fileName);
-      updateTokenInfo(token, parsedFenceInfo);
-    } else {
-      parsedFenceInfo = { langName: "", fileName: "", langAttrs: "" };
-    }
+    token.info = parsedFenceInfo.langName
+      ? `${parsedFenceInfo.langName} ${parsedFenceInfo.langAttrs}`
+      : "";
 
     let rendered: string;
     try {
@@ -55,66 +51,48 @@ const namedCodeBlocks = (md: MarkdownIt, options?: CssOptions): void => {
     }
 
     const rootElement = parse(rendered);
+    const pre = rootElement.firstChild;
 
-    updateElement(rootElement, parsedFenceInfo, isEnableInlineCss);
+    if (pre instanceof HTMLElement) {
+      addNamedFenceBlockAttr(pre, isEnableInlineCss);
+      addNamedFenceFilenameAtrr(
+        pre,
+        parsedFenceInfo.fileName,
+        isEnableInlineCss
+      );
+    }
 
     return rootElement.toString();
   };
 };
 
-function updateElement(
-  element: HTMLElement,
-  parsedFenceInfo: ParsedFenceInfo,
-  isEnableInlineCss: boolean
-): void {
-  addNamedFenceBlockAttr(element, isEnableInlineCss);
-
-  addNamedFenceFilenameAtrr(
-    element,
-    parsedFenceInfo.fileName,
-    isEnableInlineCss
-  );
-}
-
 function addNamedFenceBlockAttr(
-  element: HTMLElement,
+  pre: HTMLElement,
   isEnableInlineCss: boolean
 ): void {
-  if (element.firstChild instanceof HTMLElement) {
-    const existClass = element.firstChild.getAttribute("class");
+  const existClass = pre.getAttribute("class");
+  pre.setAttribute(
+    "class",
+    existClass ? `${existClass} ${fencBlockName}` : fencBlockName
+  );
 
-    if (element.firstChild.getAttribute("class")) {
-      element.firstChild.setAttribute(
-        "class",
-        `${existClass} ${fencBlockName}`
-      );
-    } else {
-      element.firstChild.setAttribute("class", fencBlockName);
-    }
-
-    if (isEnableInlineCss) {
-      element.firstChild.setAttribute("style", defaultStyleOptions.mincbBlock);
-    }
+  if (isEnableInlineCss) {
+    pre.setAttribute("style", defaultStyleOptions.mincbBlock);
   }
 }
 
 function addNamedFenceFilenameAtrr(
-  element: HTMLElement,
+  pre: HTMLElement,
   fileName: string,
   isEnableInlineCss: boolean
 ): void {
   // fileName must already be HTML-escaped by the caller.
-  const node = parse(`<div class="${fenceFileName}">${fileName}</div>`);
-
-  const firstChild = node.firstChild;
-
-  if (firstChild instanceof HTMLElement && isEnableInlineCss) {
-    firstChild.setAttribute("style", defaultStyleOptions.mincbName);
-  }
-
-  if (element.firstChild instanceof HTMLElement) {
-    element.firstChild.appendChild(node);
-  }
+  const style = isEnableInlineCss
+    ? ` style="${defaultStyleOptions.mincbName}"`
+    : "";
+  pre.appendChild(
+    parse(`<div class="${fenceFileName}"${style}>${fileName}</div>`)
+  );
 }
 
 function parseInfo(info: string): ParsedFenceInfo {
@@ -131,14 +109,6 @@ function parseInfo(info: string): ParsedFenceInfo {
   }
 
   return data;
-}
-
-function updateTokenInfo(token: Token, parsedFenceInfo: ParsedFenceInfo): void {
-  if (parsedFenceInfo.langName) {
-    token.info = parsedFenceInfo.langName + " " + parsedFenceInfo.langAttrs;
-  } else {
-    token.info = "";
-  }
 }
 
 export = namedCodeBlocks;
