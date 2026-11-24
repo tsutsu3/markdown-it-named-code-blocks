@@ -61,8 +61,14 @@ const namedCodeBlocks: PluginWithOptions<CssOptions> = (md, options) => {
       parsedFenceInfo = { langName: "", fileName: "", langAttrs: "" };
     }
 
-    const rootElement = parse(defaultRender(tokens, idx, options, env, self));
-    token.info = orgInfo;
+    let rendered: string;
+    try {
+      rendered = defaultRender(tokens, idx, options, env, self);
+    } finally {
+      token.info = orgInfo;
+    }
+
+    const rootElement = parse(rendered);
 
     updateElement(rootElement, parsedFenceInfo, isEnableInlineCss);
 

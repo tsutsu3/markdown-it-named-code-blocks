@@ -78,3 +78,20 @@ describe("markdown-it-named-code-blocks-inline-css", () => {
     md
   );
 });
+
+describe("markdown-it-named-code-blocks-restore-info-on-error", () => {
+  it("restores token.info when highlight throws", () => {
+    const md = new MarkdownIt({
+      highlight: () => {
+        throw new Error("highlight failed");
+      }
+    }).use(namedCodeBlocks);
+
+    const tokens = md.parse("```js:hello.js\nconsole.log(1);\n```", {});
+
+    expect(() => md.renderer.render(tokens, md.options, {})).toThrow(
+      "highlight failed"
+    );
+    expect(tokens[0].info).toBe("js:hello.js");
+  });
+});
