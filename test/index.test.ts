@@ -5,6 +5,7 @@ import path from "path";
 const generate = require("markdown-it-testgen"); // eslint-disable-line @typescript-eslint/no-var-requires
 import hljs from "highlight.js";
 import MarkdownIt from "markdown-it";
+import type { MarkdownIt as MarkdownItInstance } from "markdown-it";
 import namedCodeBlocks from "../src";
 
 const hljsVersion = require("highlight.js/package.json").version;
@@ -40,7 +41,7 @@ describe("markdown-it-named-code-blocks-default-highlight", () => {
 });
 
 describe("markdown-it-named-code-blocks-override-highlight", () => {
-  const md: MarkdownIt = new MarkdownIt({
+  const md: MarkdownItInstance = new MarkdownIt({
     highlight: function (str: string, lang: string) {
       if (lang && hljs.getLanguage(lang)) {
         return (
