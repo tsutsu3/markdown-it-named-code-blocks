@@ -52,9 +52,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
-  "peerDependencies": {
-    "markdown-it": "^15.0.0"
-  },
   "dependencies": {
     "node-html-parser": "^9.0.7"
   }
